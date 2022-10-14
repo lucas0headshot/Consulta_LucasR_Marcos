@@ -6,10 +6,11 @@ import java.util.Scanner; //Importar Scanner
 public class consulta {
  public static void main(String[] args){
   String Ver_Vacina; //Variáveis
-  float Ver_Temperatura, V_Vacina, V_Trat_Temp, V_Consulta;
+  float Ver_Temperatura, V_Vacina, V_Trat_Temp, V_Consulta, V_Total;
   
   V_Vacina = 0;
   V_Trat_Temp = 0;
+  V_Consulta = 100;
   
   Scanner ler = new Scanner(System.in); //Criar Scanner
    
@@ -25,15 +26,15 @@ public class consulta {
     Felino_1.Dono = "Cuca Beludo";
     Felino_1.Contato = 12345678;
 
-  System.out.print("O felino está com as vacinas em dia?"); //Verificar vacina
+  System.out.print("O felino está com as vacinas em dia?(Sim/Não) "); //Verificar vacina
     Ver_Vacina = ler.next();
-  if (Ver_Vacina != "Sim"){
+  if (Ver_Vacina == "Não"){
     System.out.println("Vacina recomendada: Rinotraqueíte (FHV-1)");
     System.out.print("Digite o valor da vacina: ");
       V_Vacina = ler.nextInt();
   }
     
-  System.out.println("Digite a temperatura do felino: "); //Verificar temperatura
+  System.out.print("Digite a temperatura do felino: "); //Verificar temperatura
     Ver_Temperatura = ler.nextFloat();
   if (Ver_Temperatura >= 38.1 && Ver_Temperatura <= 39.2 || Ver_Temperatura > 39.2){
     System.out.println("Felino está com febre!");
@@ -42,16 +43,20 @@ public class consulta {
       V_Trat_Temp = ler.nextFloat();
   }
 
-  V_Consulta = (V_Vacina + V_Trat_Temp); //Calcular valor da consulta
+  V_Total = (V_Vacina + V_Trat_Temp); //Calcular valor da consulta
 
   System.out.println("--- Diagnóstico ---");//Diagnóstico
-  if (Ver_Vacina != "Sim"){
+  if (Ver_Vacina == "Não"){
     System.out.println("Vacina realizada: Rinotraqueíte (FHV-1)");
     System.out.print("Valor: " + V_Vacina);
+  } else {
+    System.out.println("Nenhum vacina realizada!");
   }
   if (Ver_Temperatura >= 38.1 && Ver_Temperatura <= 39.2 || Ver_Temperatura > 39.2){  
     System.out.println("Felino com febre! Temperatura: " +  Ver_Temperatura);
     System.out.print("Valor do tratamento: " + V_Trat_Temp);
+  } else{
+    System.out.println("Nenhum tratamento realizado!");
   }
 
   System.out.println("           CENTRO VETERINÁRIO CEDUP"); //Impressão da NF
@@ -76,9 +81,10 @@ public class consulta {
   System.out.println("QTD UN. VL UNIT(R$)      ST            VL ITEM(R$)");
   System.out.println("---------------------------------------------------");
   System.out.println("001     00000000000109                   ANEL" + V_Consulta);
-  System.out.println("         1UN X " + V_Consulta + " 02T18;00%  " + V_Consulta);
+  System.out.println("         1 VACINA X " + V_Vacina + " 02T18;00%  " + V_Vacina);
+  System.out.println("         1 REMÉDIO X " + V_Trat_Temp + " 02T18;00%  " + V_Trat_Temp);
   System.out.println("TOTAL R$                              -------------");
-  System.out.println("Ct Crédito                                     " + V_Consulta);
+  System.out.println("Ct Crédito                                     " + V_Total);
   System.out.println("T2=02T18;00%");
   System.out.println("MD-5:E7B70BBEC831D240FF6D8C0DDC642AC1");
   System.out.println("MINAS LEGAL: 28663093000153  10072019  600");
