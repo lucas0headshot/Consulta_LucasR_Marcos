@@ -1,4 +1,4 @@
 public class veterinario {
  String Nome;
- int CRV, CPF;
+ int CRMV, CPF;
 }
